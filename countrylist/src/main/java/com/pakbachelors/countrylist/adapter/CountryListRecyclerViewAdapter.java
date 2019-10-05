@@ -42,11 +42,13 @@ public class CountryListRecyclerViewAdapter extends RecyclerView.Adapter<Country
         holder.imageView.setImageResource(current.getCountryImageCode());
         holder.textView.setText(current.getCountryName());
         if (current.isCharW()) {
-            String res = current.getCountryName().substring(1).toUpperCase();
+            String res = current.getCountryName().substring(0,1).toUpperCase();
             holder.titleLayout.setVisibility(View.VISIBLE);
             holder.titleTxt.setText(res);
+            holder.view.setVisibility(View.VISIBLE);
         } else {
             holder.titleLayout.setVisibility(View.GONE);
+            holder.view.setVisibility(View.VISIBLE);
         }
     }
 
@@ -59,6 +61,7 @@ public class CountryListRecyclerViewAdapter extends RecyclerView.Adapter<Country
         TextView textView, titleTxt;
         ImageView imageView;
         FrameLayout titleLayout;
+        View view;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,6 +69,7 @@ public class CountryListRecyclerViewAdapter extends RecyclerView.Adapter<Country
             titleTxt = itemView.findViewById(R.id.title_txt);
             imageView = itemView.findViewById(R.id.image_view);
             titleLayout = itemView.findViewById(R.id.title_layout);
+            view=itemView.findViewById(R.id.view);
         }
     }
 }

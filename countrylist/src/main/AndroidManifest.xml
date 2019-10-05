@@ -3,7 +3,8 @@
     package="com.pakbachelors.countrylist">
 
     <application>
-        <activity android:name=".activity.CountryListActivity"></activity>
+        <activity android:name=".activity.CountryListActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -10,7 +10,8 @@ public abstract class CountryList {
     public static int ACTIVITY_REQUEST_CODE = 1211;
     public static Activity activity;
 
-    public static void showList() {
+    public static void showList(Activity mactivity) {
+        activity = mactivity;
         activity.startActivityForResult(getIntent(activity), ACTIVITY_REQUEST_CODE);
     }
 
