@@ -1,6 +1,8 @@
 package com.pakbachelors.countrylist.model;
 
-public class Country {
+import java.io.Serializable;
+
+public class Country implements Serializable {
     private String nameCode;
     private String countryCode;
     private String countryName;

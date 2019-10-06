@@ -1,6 +1,7 @@
 package com.pakbachelors.countrylist.adapter;
 
-import android.content.Context;
+import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,18 +12,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.pakbachelors.countrylist.CountryList;
 import com.pakbachelors.countrylist.R;
+import com.pakbachelors.countrylist.activity.CountryListActivity;
 import com.pakbachelors.countrylist.model.Country;
 
 import java.util.List;
 
 public class CountryListRecyclerViewAdapter extends RecyclerView.Adapter<CountryListRecyclerViewAdapter.MyViewHolder> {
 
-    private Context context;
+    private Activity context;
     private List<Country> data;
     private LayoutInflater inflater;
 
-    public CountryListRecyclerViewAdapter(Context context, List<Country> data) {
+    public CountryListRecyclerViewAdapter(Activity context, List<Country> data) {
         this.context = context;
         this.data = data;
         inflater = LayoutInflater.from(context);
@@ -38,11 +41,11 @@ public class CountryListRecyclerViewAdapter extends RecyclerView.Adapter<Country
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Country current = data.get(position);
+        final Country current = data.get(position);
         holder.imageView.setImageResource(current.getCountryImageCode());
         holder.textView.setText(current.getCountryName());
         if (current.isCharW()) {
-            String res = current.getCountryName().substring(0,1).toUpperCase();
+            String res = current.getCountryName().substring(0, 1).toUpperCase();
             holder.titleLayout.setVisibility(View.VISIBLE);
             holder.titleTxt.setText(res);
             holder.view.setVisibility(View.VISIBLE);
@@ -50,6 +53,16 @@ public class CountryListRecyclerViewAdapter extends RecyclerView.Adapter<Country
             holder.titleLayout.setVisibility(View.GONE);
             holder.view.setVisibility(View.VISIBLE);
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra(CountryList.SELECTED_COUNTRY, current);
+                context.setResult(Activity.RESULT_OK, returnIntent);
+                context.finish();
+                context.overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
+            }
+        });
     }
 
     @Override
@@ -69,7 +82,7 @@ public class CountryListRecyclerViewAdapter extends RecyclerView.Adapter<Country
             titleTxt = itemView.findViewById(R.id.title_txt);
             imageView = itemView.findViewById(R.id.image_view);
             titleLayout = itemView.findViewById(R.id.title_layout);
-            view=itemView.findViewById(R.id.view);
+            view = itemView.findViewById(R.id.view);
         }
     }
 }

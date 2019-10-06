@@ -7,6 +7,7 @@ import android.content.Intent;
 import com.pakbachelors.countrylist.activity.CountryListActivity;
 
 public abstract class CountryList {
+    public static final String SELECTED_COUNTRY = "selected_country";
     public static int ACTIVITY_REQUEST_CODE = 1211;
     public static Activity activity;
 
@@ -19,4 +20,6 @@ public abstract class CountryList {
         Intent intent = new Intent(context, CountryListActivity.class);
         return intent;
     }
+
+
 }
