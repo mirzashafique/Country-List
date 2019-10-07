@@ -31,6 +31,7 @@
                 android:layout_height="wrap_content">
 
                 <View
+                    android:id="@+id/view"
                     android:layout_width="50dp"
                     android:alpha="0.2"
                     android:layout_gravity="center_vertical"
@@ -38,6 +39,7 @@
                     android:layout_height="48dp" />
 
                 <ImageView
+                    android:id="@+id/back_im"
                     android:layout_width="20dp"
                     android:src="@drawable/ic_back_arrow"
                     android:layout_gravity="center"
