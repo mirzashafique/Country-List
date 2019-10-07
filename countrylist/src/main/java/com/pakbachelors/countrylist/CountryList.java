@@ -10,6 +10,7 @@ public abstract class CountryList {
     public static final String SELECTED_COUNTRY = "selected_country";
     public static int ACTIVITY_REQUEST_CODE = 1211;
     public static Activity activity;
+    private static String lan = "en";
 
     public static void showList(Activity mactivity) {
         activity = mactivity;
@@ -18,8 +19,13 @@ public abstract class CountryList {
 
     private static Intent getIntent(Context context) {
         Intent intent = new Intent(context, CountryListActivity.class);
+        intent.putExtra("lan",lan);
         return intent;
     }
 
+    public CountryList setLanguage(String lan) {
+        this.lan = lan;
+        return this;
+    }
 
 }

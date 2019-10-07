@@ -2,7 +2,6 @@ package com.pakbachelors.countrylist.activity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -49,8 +48,8 @@ public class CountryListActivity extends AppCompatActivity {
         adapter = new CountryListRecyclerViewAdapter(this, data);
 
         //Views init
-        backImage = findViewById(R.id.back_im);
-        view = findViewById(R.id.view);
+        backImage = findViewById(R.id.back_im_11);
+        view = findViewById(R.id.view_11);
         backButton = findViewById(R.id.back_btn);
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -64,7 +63,7 @@ public class CountryListActivity extends AppCompatActivity {
             }
         });
 
-        Locale locale = new Locale("ar");
+        Locale locale = new Locale(getIntent().getStringExtra("lan"));
         Locale.setDefault(locale);
         if (isRTL(Locale.getDefault())) {
             backImage.setImageResource(R.drawable.ic_right_arrow);
