@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,6 +23,7 @@ import com.pakbachelors.countrylist.model.Country;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class CountryListActivity extends AppCompatActivity {
 
@@ -32,6 +34,8 @@ public class CountryListActivity extends AppCompatActivity {
 
     //Views init
     private RecyclerView recyclerView;
+    private ImageView backImage;
+    private View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,8 @@ public class CountryListActivity extends AppCompatActivity {
         adapter = new CountryListRecyclerViewAdapter(this, data);
 
         //Views init
+        backImage = findViewById(R.id.back_im);
+        view = findViewById(R.id.view);
         backButton = findViewById(R.id.back_btn);
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -57,6 +63,16 @@ public class CountryListActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
             }
         });
+
+        Locale locale = new Locale("ar");
+        Locale.setDefault(locale);
+        if (isRTL(Locale.getDefault())) {
+            backImage.setImageResource(R.drawable.ic_right_arrow);
+            view.setBackgroundResource(R.drawable.ic_shape_right);
+        } else {
+            backImage.setImageResource(R.drawable.ic_back_arrow);
+            view.setBackgroundResource(R.drawable.ic_shape_blue);
+        }
     }
 
     @Override
@@ -75,5 +91,11 @@ public class CountryListActivity extends AppCompatActivity {
             //  window.setNavigationBarColor(activity.getResources().getColor(android.R.color.transparent));
             window.setBackgroundDrawable(background);
         }
+    }
+
+    public static boolean isRTL(Locale locale) {
+        final int directionality = Character.getDirectionality(locale.getDisplayName().charAt(0));
+        return directionality == Character.DIRECTIONALITY_RIGHT_TO_LEFT ||
+                directionality == Character.DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC;
     }
 }
