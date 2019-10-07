@@ -19,13 +19,14 @@ public abstract class CountryList {
 
     private static Intent getIntent(Context context) {
         Intent intent = new Intent(context, CountryListActivity.class);
-        intent.putExtra("lan",lan);
+        intent.putExtra("lan", lan);
         return intent;
     }
 
-    public CountryList setLanguage(String lan) {
-        this.lan = lan;
-        return this;
+    public static void showList(Activity mactivity, String mLan) {
+        lan = mLan;
+        activity = mactivity;
+        activity.startActivityForResult(getIntent(activity), ACTIVITY_REQUEST_CODE);
     }
 
 }
