@@ -50,7 +50,7 @@ public class CountryListActivity extends AppCompatActivity {
         //Views init
         backImage = findViewById(R.id.back_im_11);
         view = findViewById(R.id.view_11);
-        backButton = findViewById(R.id.back_btn);
+        backButton = findViewById(R.id.back_btn_11);
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setAdapter(adapter);

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activity.CountryListActivity">
 
-    <include layout="@layout/app_bar" />
+    <include layout="@layout/app_bar_11" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
